@@ -108,3 +108,8 @@ body {
   text-decoration: none;
   text-decoration-line: none;
 }
+
+.lacard{
+  display: flex;
+   justify-content: space-between;
+}

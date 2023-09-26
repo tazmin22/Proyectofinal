@@ -3,25 +3,24 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import MainRouter from './routes/MainRouter';
 import { BrowserRouter } from 'react-router-dom';
-
-
-
-
-
 import React from 'react'
+import { CartProvider } from './components/context/CartContext';
 
 const App = () => {
  return (
-   <div> <main> <MainRouter /> </main>
+   <CartProvider>
    
    
    
      
+   <main> <MainRouter /> </main>
+
+   <footer>hola</footer>
      
      
      
+     </CartProvider>
      
-     </div>
 
  )
 }

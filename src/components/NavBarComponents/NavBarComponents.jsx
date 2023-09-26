@@ -15,7 +15,7 @@ const NavBar = () => {
   return (
     <Navbar>
       <Container>
-        <Navbar.Brand className='funciona'>
+        <Navbar.Brand>
           <Link to="/" className='funciona'>Cafeteria  ☕</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

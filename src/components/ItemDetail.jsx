@@ -3,11 +3,13 @@ import Card from 'react-bootstrap/Card';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import ItemCount from './ItemCount/ItemCount';
+import { ListGroup } from 'react-bootstrap';
 
 const ItemDetail = ({productData}) => {
   
   return (
-    <Card style={{ width: "18rem" }}>
+    <div className='d-flex justify-content-center align-items-center'> 
+      <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={productData.image} />
       <Card.Body>
         <Card.Title>{productData.title}</Card.Title>
@@ -19,13 +21,14 @@ const ItemDetail = ({productData}) => {
       </ListGroup>
       <Card.Body>
         <ItemCount />
-        {stock >= 5 ? (
+        {productData.stock >= 5 ? (
           <strong>Stock disponible</strong>
         ) : (
           <strong>Ultimas unidades disponibles!</strong>
         )}
       </Card.Body>
     </Card>
+    </div>
   );
 };
 
