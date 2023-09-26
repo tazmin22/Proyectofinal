@@ -1,20 +1,11 @@
-
-import Card from "react-bootstrap/Card";
-import { useParams } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
 import ItemCount from './ItemCount/ItemCount';
 
-const ItemDetailContainer = ({ productData }) => {
-  const [stock, setStock] = React.useState(10);
-  const [onAdd, setOnAdd] = React.useState(false);
-
-  const buttonStyles = {
-    backgroundColor: "blue",
-  };
-
-  const buttonStylesOnAdd = {
-    backgroundColor: "green",
-  };
-
+const ItemDetail = ({productData}) => {
+  
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={productData.image} />
@@ -38,4 +29,4 @@ const ItemDetailContainer = ({ productData }) => {
   );
 };
 
-export default ItemDetailContainer;
+export default ItemDetail;

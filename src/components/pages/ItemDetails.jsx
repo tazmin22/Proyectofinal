@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import ItemDetail from "../ItemDetail";
+import { useItemCollection } from "../hooks/useItemCollection";
+import LoaderComponent from "../LoaderComponent/LoaderComponent";
 
 
 
 const ItemDetails = () => {
-    const [product, setProduct] = useState({});
+    
     const { productId } = useParams();
+    const {data, loading} = useItemCollection("products", productId)
   
-    useEffect(() => {
-     
-      const db = getFirestore();
+   
   
-      
-      const productItem = doc(db, "products", productId);
-  
-      
-      getDoc(productItem).then((snapshot) => {
-        setProduct({ id: snapshot.id, ...snapshot.data() });
-      });
-    }, [itemId]);
-  
-    return <ItemDetailsContainer productData={product} />;
+    return loading ? <LoaderComponent /> : <ItemDetail productData={data} />;
   };
   
   export default ItemDetails;

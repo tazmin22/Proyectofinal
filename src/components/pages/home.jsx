@@ -1,30 +1,15 @@
-import { useState, useEffect} from "react";
-import ItemListContainer from "../ItemListContainer/ItemListContainer"
-import axios from "axios"
-import { productsData } from "../../json/productsData";
-import { collection, getDocs, getFirestore, onSnapshot } from "firebase/firestore";
+import ItemListContainer from "../ItemListContainer/ItemListContainer";
 
-import React from 'react'
+import LoaderComponent from "../LoaderComponent/LoaderComponent";
 
+import { useCollection } from "../hooks/useCollection";
+import ItemDetail from "../ItemDetail";
 
 const Home = () => {
- 
 
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    
-    const db = getFirestore();
+  const {data, loading} = useCollection("products");
 
-   
-    const productsCollection = collection(db, "products");
-
-    
-    getDocs(productsCollection).then((snapshot) => {
-      setProducts(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-    });
-  }, []);
-
-  return <ItemListContainer productsData={products} />;
+ return loading ? <LoaderComponent /> : <ItemListContainer productsData={data} />;
 };
 
 export default Home;

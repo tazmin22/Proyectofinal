@@ -1,24 +1,28 @@
 import { useState, useEffect} from "react";
 import ItemListContainer from "../ItemListContainer/ItemListContainer"
-import axios from "axios"
 import { useParams } from "react-router-dom";
-import { productsData } from "../../json/productsData";
-
-
+import LoaderComponent from "../LoaderComponent/LoaderComponent";
+import { useItemCollection } from "../hooks/useItemCollection";
 import React from 'react'
 
-const category = () => {
+const Category = () => {
+  const [productsFiltered, setProductsFiltered] = React.useState([]);
 
-  const {categoryId} = useParams();
+  const { categoryName } = useParams();
+  const { data, loading } = useItemCollection("products");
 
+  React.useEffect(() => {
+    const productsFiltered = data.filter((product) => {
+      return product.category === categoryName;
+    });
+    setProductsFiltered(productsFiltered);
+  }, [data, categoryName]);
 
+  return loading ? (
+    <LoaderComponent />
+  ) : (
+    <ItemListContainer productsData={productsFiltered} />
+  );
+};
 
-    const filter = productsData.filter((item) => item.category === categoryId);
-
-  return (
-      <ItemListContainer productsData ={filter} />
-
-   )
-}
-
-export default category
+export default Category;

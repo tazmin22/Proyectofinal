@@ -3,8 +3,6 @@ import React from "react";
  import Home from "../components/pages/home";
  import Category from "../components/pages/Category";
  import NavBarComponent from "../components/NavBarComponents/NavBarComponents";
-
- 
  import ItemDetails from "../components/pages/ItemDetails";
 
 const MainRouter = () => {
@@ -15,7 +13,7 @@ const MainRouter = () => {
          <Routes>
          <Route path="/" element={< Home />}></Route>
        
-         <Route path="/category/:categoryId" element={<Category />} />
+         <Route path="/category/:categoryName" element={<Category />} />
          <Route path="/item/:productId" element={<ItemDetails />} />
            
          
